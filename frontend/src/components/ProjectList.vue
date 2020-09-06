@@ -6,6 +6,7 @@
       <v-list-item
           v-for="(project, i) in projects"
           :key="i"
+          :href="`${project.urls.web.project}/posts`"
       >
         <v-list-item-avatar>
           <v-img :src="project.photo.small"></v-img>
