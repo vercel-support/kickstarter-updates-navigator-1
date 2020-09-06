@@ -3,8 +3,18 @@
     <v-row justify="center">
       <v-col cols="12" lg="8">
         <v-row justify="space-between">
-          <h1>Kickstarters</h1>
-          <v-btn @click="refresh()">Refresh</v-btn>
+          <v-col>
+            <h1>Kickstarters</h1>
+          </v-col>
+          <v-col>
+            <v-text-field> Search Bar Placeholder</v-text-field>
+          </v-col>
+          <v-col>
+            <v-select>Sorter Placeholder</v-select>
+          </v-col>
+          <v-col>
+            <v-btn @click="refresh()">Refresh</v-btn>
+          </v-col>
         </v-row>
         <v-row>
           <v-list
@@ -50,8 +60,13 @@ export default Vue.extend({
       'isAvailable',
     ]),
     ...mapGetters('projects', {
-      projects: 'getAvailableCollection',
+      availableProjects: 'getAvailableCollection',
     }),
+    projects() {
+      const lastUpdatedSorter = (a,b) => b.updated_at - a.updated_at;
+      const deadlineSorter = (a,b) => b.deadline - a.deadline;
+      return Object.assign([], this.availableProjects).sort(lastUpdatedSorter);
+    },
   },
   mounted() {
     this.refresh();
@@ -62,7 +77,7 @@ export default Vue.extend({
     ]),
     refresh() {
       this.list()
-          .catch((e) => {
+          .catch((e: Error) => {
             if (!this.isAvailable) {
               console.log(e);
               this.$notify({
