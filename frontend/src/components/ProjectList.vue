@@ -4,7 +4,7 @@
       <v-col cols="12" lg="8">
         <v-row align="center" justify="space-between">
           <v-col>
-            <h1>Kickstarters</h1>
+            <h1>Projects</h1>
           </v-col>
           <v-spacer />
           <v-col cols="3">
@@ -27,7 +27,7 @@
             />
           </v-col>
           <v-col cols="1">
-            <v-btn @click="debug()"><v-icon>mdi-restart</v-icon></v-btn>
+            <v-btn color="primary" @click="debug()"><v-icon>mdi-restart</v-icon></v-btn>
           </v-col>
         </v-row>
         <v-row>
@@ -46,8 +46,8 @@
               <v-list-item-content>
                 <v-list-item-title>
                   {{ project.name }}
-                  <v-icon :size="20" v-if="project.is_starred">mdi-star</v-icon>
-                  <v-icon :size="20" v-if="project.is_backing">mdi-kickstarter</v-icon>
+                  <v-icon color="primary" :size="20" v-if="project.is_starred">mdi-star</v-icon>
+                  <v-icon color="primary" :size="20" v-if="project.is_backing">mdi-kickstarter</v-icon>
                 </v-list-item-title>
                 <v-list-item-subtitle v-html="project.blurb"></v-list-item-subtitle>
               </v-list-item-content>
@@ -88,7 +88,7 @@ export default Vue.extend({
     }),
     projects(): any[] {
       return Object.assign([], this.availableProjects)
-          .filter(project => {
+          .filter((project: any) => {
             return project.name.toLowerCase().includes(this.filter.toLowerCase())
           })
           .sort(this.sorter.expr);

@@ -5,46 +5,29 @@
         :max="3" />
     <v-app-bar
       app
-      color="primary"
+      color="secondary"
       dark
     >
       <div class="d-flex align-center">
-        <v-img
-          alt="Vuetify Logo"
-          class="shrink mr-2"
-          contain
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
-          transition="scale-transition"
-          width="40"
-        />
-
-        <v-img
-          alt="Vuetify Name"
-          class="shrink mt-1 hidden-sm-and-down"
-          contain
-          min-width="100"
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
-          width="100"
-        />
+        <h1>Kickstarter Updates Navigator</h1>
       </div>
 
       <v-spacer></v-spacer>
 
-      <v-btn
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-        text
-      >
-        <span class="mr-2">Latest Release</span>
-        <v-icon>mdi-open-in-new</v-icon>
-      </v-btn>
+      <div id="nav" class="px-6">
+        <router-link :to="{ name: 'home'}" class="pa-3">
+          <span class="mr-2">Home</span>
+          <v-icon>mdi-home</v-icon>
+        </router-link>
+
+        <router-link :to="{ name: 'login'}" class="pa-3">
+          <span class="mr-2">Login</span>
+          <v-icon>mdi-login</v-icon>
+        </router-link>
+      </div>
     </v-app-bar>
 
     <v-main>
-      <div id="nav">
-        <router-link :to="{ name: 'home'}">Home</router-link> |
-        <router-link :to="{ name: 'login'}">Login</router-link>
-      </div>
       <router-view/>
     </v-main>
   </v-app>
@@ -52,14 +35,13 @@
 
 <style lang="scss">
 #nav {
-  padding: 30px;
-
   a {
     font-weight: bold;
-    color: #2c3e50;
+    text-decoration: none;
+    color: #FFFFFF;
 
     &.router-link-exact-active {
-      color: #42b983;
+      color: #05ce78;
     }
   }
 }
