@@ -37,7 +37,7 @@ export const actions: ActionTree<ResourceState, any> = {
 
     list({ dispatch }) {
         return dispatch('setOnLoadingAll', true)
-            .then(() => fetch("/api/projects"))
+            .then(() => fetch(`${process.env.VUE_APP_BACKEND_ORIGIN}/api/projects`))
             .then(res => res.json())
             .then(payload => dispatch('updateCollectionAll', payload))
             .finally(() => dispatch('setOnLoadingAll', false));
