@@ -2,18 +2,32 @@
   <v-container>
     <v-row justify="center">
       <v-col cols="12" lg="8">
-        <v-row justify="space-between">
+        <v-row align="center" justify="space-between">
           <v-col>
             <h1>Kickstarters</h1>
           </v-col>
-          <v-col>
-            <v-text-field> Search Bar Placeholder</v-text-field>
+          <v-spacer />
+          <v-col cols="3">
+            <v-text-field
+                label="Filter"
+                v-model="filter"
+                hide-details
+                dense
+            />
           </v-col>
-          <v-col>
-            <v-select>Sorter Placeholder</v-select>
+          <v-col cols="2">
+            <v-select
+                label="Sorter"
+                v-model="sorter"
+                :items="sorterItems"
+                item-text="label"
+                hide-details
+                dense
+                return-object
+            />
           </v-col>
-          <v-col>
-            <v-btn @click="refresh()">Refresh</v-btn>
+          <v-col cols="1">
+            <v-btn @click="debug()"><v-icon>mdi-restart</v-icon></v-btn>
           </v-col>
         </v-row>
         <v-row>
@@ -54,6 +68,16 @@ import {mapActions, mapGetters} from "vuex";
 
 export default Vue.extend({
   name: 'ProjectList',
+  data() {
+    return {
+      filter: "",
+      sorter: { label: 'Last Updated', expr: (a: any, b: any) => b.updated_at - a.updated_at },
+      sorterItems: [
+        { label: 'Last Updated', expr: (a: any,b: any) => b.updated_at - a.updated_at },
+        { label: 'Last Finished', expr: (a: any, b: any) => b.deadline - a.deadline },
+      ],
+    }
+  },
   computed: {
     ...mapGetters('projects', [
       'isLoading',
@@ -62,10 +86,12 @@ export default Vue.extend({
     ...mapGetters('projects', {
       availableProjects: 'getAvailableCollection',
     }),
-    projects() {
-      const lastUpdatedSorter = (a,b) => b.updated_at - a.updated_at;
-      const deadlineSorter = (a,b) => b.deadline - a.deadline;
-      return Object.assign([], this.availableProjects).sort(lastUpdatedSorter);
+    projects(): any[] {
+      return Object.assign([], this.availableProjects)
+          .filter(project => {
+            return project.name.toLowerCase().includes(this.filter.toLowerCase())
+          })
+          .sort(this.sorter.expr);
     },
   },
   mounted() {
@@ -75,6 +101,9 @@ export default Vue.extend({
     ...mapActions('projects', [
       'list',
     ]),
+    debug() {
+      console.log(this.sorter);
+    },
     refresh() {
       this.list()
           .catch((e: Error) => {
