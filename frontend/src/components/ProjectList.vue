@@ -20,7 +20,11 @@
                 <v-img :src="project.photo.small"></v-img>
               </v-list-item-avatar>
               <v-list-item-content>
-                <v-list-item-title>{{ project.name }}</v-list-item-title>
+                <v-list-item-title>
+                  {{ project.name }}
+                  <v-icon :size="20" v-if="project.is_starred">mdi-star</v-icon>
+                  <v-icon :size="20" v-if="project.is_backing">mdi-kickstarter</v-icon>
+                </v-list-item-title>
                 <v-list-item-subtitle v-html="project.blurb"></v-list-item-subtitle>
               </v-list-item-content>
               <v-list-item-action>
