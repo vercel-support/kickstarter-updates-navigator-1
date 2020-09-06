@@ -2,6 +2,8 @@ FROM node:11-alpine as base
 
 WORKDIR /node/app
 
+RUN npm install -g @vue/cli
+
 COPY package.json /node/app/package.json
 COPY package-lock.json /node/app/package-lock.json
 
@@ -15,7 +17,7 @@ RUN npm install
 
 # Builder... might be useful later
 FROM base as builder
-RUN cd /node/app && NODE_ENV=production npm run build
+RUN cd /node/app && NODE_ENV=production npm run build -- --mode production
 
 # Dev
 FROM base as dev

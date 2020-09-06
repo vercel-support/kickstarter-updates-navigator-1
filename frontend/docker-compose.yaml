@@ -10,6 +10,7 @@ services:
         working_dir: "/node/app"
         volumes:
             - .:/node/app
+        command: "npm run serve"
         stdin_open: true
         tty: true
         ports:
