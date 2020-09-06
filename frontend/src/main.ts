@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import VueMoment from 'vue-moment';
 import App from './App.vue'
 import router from './router'
 import vuetify from './plugins/vuetify';
@@ -10,6 +11,8 @@ Vue.config.productionTip = false
 if (process.env.NODE_ENV === "development") {
   makeServer()
 }
+
+Vue.use(VueMoment);
 
 new Vue({
   router,

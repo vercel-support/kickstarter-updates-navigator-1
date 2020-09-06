@@ -11,9 +11,12 @@
           <v-img :src="project.photo.small"></v-img>
         </v-list-item-avatar>
         <v-list-item-content>
-          <v-list-item-title v-html="project.name"></v-list-item-title>
+          <v-list-item-title>{{ project.name }}</v-list-item-title>
           <v-list-item-subtitle v-html="project.blurb"></v-list-item-subtitle>
         </v-list-item-content>
+        <v-list-item-action>
+          <v-list-item-action-text>{{ project.updated_at | moment('calendar')}}</v-list-item-action-text>
+        </v-list-item-action>
       </v-list-item>
     </v-list>
   </v-container>
