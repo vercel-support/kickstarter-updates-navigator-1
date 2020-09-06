@@ -1,5 +1,8 @@
 <template>
   <v-app>
+    <notifications
+        position="bottom right"
+        :max="3" />
     <v-app-bar
       app
       color="primary"

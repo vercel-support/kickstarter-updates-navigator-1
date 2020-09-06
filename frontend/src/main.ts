@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import VueMoment from 'vue-moment';
+import Notifications from 'vue-notification';
 import App from './App.vue'
 import router from './router'
 import vuetify from './plugins/vuetify';
@@ -13,6 +14,7 @@ if (process.env.NODE_ENV === "development") {
 }
 
 Vue.use(VueMoment);
+Vue.use(Notifications);
 
 new Vue({
   router,

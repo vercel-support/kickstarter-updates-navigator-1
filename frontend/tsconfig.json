@@ -15,7 +15,8 @@
     "types": [
       "webpack-env",
       "vuetify",
-      "vuex"
+      "vuex",
+      "vue-notification"
     ],
     "typeRoots": [
       "./node_modules/@types",
