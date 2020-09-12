@@ -1,5 +1,5 @@
 import mockedProjects from '@/mocks/projects.json';
-import {Model, Server} from 'miragejs'
+import {Model, Server, Response} from 'miragejs'
 
 export function makeServer({ environment = "development" } = {}) {
     return new Server({
@@ -22,8 +22,9 @@ export function makeServer({ environment = "development" } = {}) {
             this.get("/projects/:id");
 
             this.post("/login", (schema, request) => {
-                const body = JSON.parse(request.requestBody)
-                return JSON.stringify(body.email+body.password);
+                const reqBody = JSON.parse(request.requestBody)
+                const body = JSON.stringify(reqBody.email+reqBody.password)
+                return new Response(200, undefined, body)
             });
         },
     })
