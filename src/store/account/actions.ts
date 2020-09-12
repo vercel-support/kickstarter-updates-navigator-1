@@ -16,7 +16,7 @@ export const actions: ActionTree<AccountState, any> = {
                 body: JSON.stringify(credentials)
             })
             .then(res => res.json())
-            .then(payload => commit(SET_TOKEN, payload));
+            .then(payload => commit(SET_TOKEN, payload.token));
     },
     logout({ commit }) {
         return new Promise((resolve) => {

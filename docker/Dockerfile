@@ -2,6 +2,7 @@ FROM node:11-alpine as base
 
 WORKDIR /node/app
 
+RUN npm i -g vercel
 RUN npm install -g @vue/cli
 
 COPY package.json /node/app/package.json
