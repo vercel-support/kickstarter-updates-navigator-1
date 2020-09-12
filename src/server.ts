@@ -14,10 +14,17 @@ export function makeServer({ environment = "development" } = {}) {
         },
 
         routes() {
-            this.urlPrefix = process.env.VUE_APP_BACKEND_ORIGIN;
+            if (process.env.VUE_APP_BACKEND_ORIGIN) {
+                this.urlPrefix = process.env.VUE_APP_BACKEND_ORIGIN
+            }
             this.namespace = "api"
             this.get("/projects");
             this.get("/projects/:id");
+
+            this.post("/login", (schema, request) => {
+                const body = JSON.parse(request.requestBody)
+                return JSON.stringify(body.email+body.password);
+            });
         },
     })
 }

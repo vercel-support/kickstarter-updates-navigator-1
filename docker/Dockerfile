@@ -15,10 +15,6 @@ COPY ./src /node/app/src
 
 RUN npm install
 
-# Builder... might be useful later
-FROM base as builder
-RUN cd /node/app && NODE_ENV=production npm run build -- --mode production
-
 # Dev
 FROM base as dev
 EXPOSE 8080

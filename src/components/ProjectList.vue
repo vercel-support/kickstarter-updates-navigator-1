@@ -27,7 +27,7 @@
             />
           </v-col>
           <v-col cols="1">
-            <v-btn color="primary" @click="debug()"><v-icon>mdi-restart</v-icon></v-btn>
+            <v-btn color="primary" @click="refresh()"><v-icon>mdi-restart</v-icon></v-btn>
           </v-col>
         </v-row>
         <v-row>

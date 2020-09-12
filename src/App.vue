@@ -17,7 +17,6 @@
       <div class="nav px-6" v-if="!loggedIn">
         <router-link
             class="pa-3"
-            exact
             :to="{ name: 'home'}">
           <span class="mr-2">Home</span>
           <v-icon>mdi-home</v-icon>
@@ -25,7 +24,6 @@
 
         <router-link
             class="pa-3"
-            exact
             :to="{ name: 'login'}">
           <span class="mr-2">Login</span>
           <v-icon>mdi-login</v-icon>
@@ -35,27 +33,18 @@
       <div class="nav px-6" v-else>
         <router-link
             class="pa-3"
-            exact
             :to="{ name: 'projects'}">
-          <span class="mr-2">Home</span>
+          <span class="mr-2">Projects</span>
           <v-icon>mdi-home</v-icon>
         </router-link>
 
-        <v-btn
-            text
-            link
+        <a
             class="pa-3"
-            @click="logout()">
+            @click="onLogout">
           <span class="mr-2 logout-btn">Logout</span>
           <v-icon>mdi-logout</v-icon>
-        </v-btn>
+        </a>
       </div>
-
-      <v-btn
-          class="pa-3"
-          @click="loginToggle()">
-        <span class="mr-2 logout-btn">Tgll</span>
-      </v-btn>
     </v-app-bar>
 
     <v-main>
@@ -66,26 +55,23 @@
 
 <script lang="ts">
 import Vue from 'vue';
+import {mapActions, mapGetters} from "vuex";
 
 export default Vue.extend({
   name: 'App',
-  page: {
-    // if no subcomponents specify a page.title, this title will be used
-    title: 'Kickstarter Updates Navigator',
-  },
-  data() {
-    return {
-      loggedIn: true,
-    }
+  computed: {
+    ...mapGetters('account', {
+      loggedIn: 'isLoggedIn',
+    }),
   },
   methods: {
-    loginToggle() {
-      this.loggedIn = !this.loggedIn;
+    ...mapActions('account', [
+      'logout',
+    ]),
+    onLogout() {
+      this.logout()
+        .then(() => this.$router.push({ name: 'home'}));
     },
-    logout() {
-      this.loggedIn = false;
-      this.$router.push({ name: 'home'});
-    }
   }
 });
 </script>
@@ -97,8 +83,9 @@ export default Vue.extend({
     text-decoration: none;
     color: #FFFFFF;
 
-    &.router-link-exact-active {
+    &.router-link-exact-active > span {
       color: #05ce78;
+      text-decoration: overline;
     }
   }
 }
