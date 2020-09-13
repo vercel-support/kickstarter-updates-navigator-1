@@ -1,5 +1,6 @@
+/* eslint-disable @typescript-eslint/camelcase */
 import {
-    SET_TOKEN,
+    SET_ACCOUNT,
 } from './mutations';
 import {ActionTree} from "vuex";
 import {AccountState} from "@/store/account/index";
@@ -16,11 +17,16 @@ export const actions: ActionTree<AccountState, any> = {
                 body: JSON.stringify(credentials)
             })
             .then(res => res.json())
-            .then(payload => commit(SET_TOKEN, payload.token));
+            .then(payload => commit(SET_ACCOUNT, payload));
     },
     logout({ commit }) {
         return new Promise((resolve) => {
-            commit(SET_TOKEN, null);
+            commit(SET_ACCOUNT, {
+                token: null,
+                name: null,
+                starred_projects: null,
+                backed_projects: null,
+            });
             resolve(null);
         });
     },
