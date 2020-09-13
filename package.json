@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@types/vue-moment": "^4.0.0",
+    "@vercel/build-utils": "^2.5.2",
     "@vercel/node": "^1.8.2",
     "axios": "^0.20.0",
     "core-js": "^3.6.5",
