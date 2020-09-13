@@ -1,12 +1,20 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import VuexPersistence from 'vuex-persist';
 
-import { account } from './account';
+import {account, AccountState} from './account';
 import { projects } from './projects';
 
 Vue.use(Vuex)
 
 const debug = process.env.VUE_APP_ENV === 'development';
+
+const vuexSession = new VuexPersistence({
+  storage: window.sessionStorage,
+  reducer: (state: { account: AccountState }) => ({
+    account: state.account,
+  }),
+});
 
 export default new Vuex.Store({
   modules: {
@@ -14,4 +22,5 @@ export default new Vuex.Store({
     projects,
   },
   strict: debug,
+  plugins: [vuexSession.plugin],
 })

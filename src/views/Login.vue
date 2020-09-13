@@ -1,13 +1,37 @@
 <template>
+
   <v-container>
-    <v-row>
-      <v-col cols="3">
-        <h1>Enter your Kickstarter Login</h1>
-        <v-form>
-          <v-text-field v-model="email">Email</v-text-field>
-          <v-text-field v-model="password">Password</v-text-field>
-          <v-btn @click="onLogin">Login</v-btn>
-        </v-form>
+    <v-row align="center" justify="center">
+      <v-col cols="12" sm="8" md="4">
+        <v-card class="elevation-12">
+          <v-toolbar
+              color="primary"
+              dark
+              flat
+          >
+            <v-toolbar-title>Kickstarter Login</v-toolbar-title>
+          </v-toolbar>
+          <v-card-text>
+            <v-form>
+              <v-text-field
+                  v-model="email"
+                  label="Login"
+                  prepend-icon="mdi-account"
+                  type="text"
+              />
+              <v-text-field
+                  v-model="password"
+                  label="Password"
+                  prepend-icon="mdi-lock"
+                  type="password"
+              />
+              <v-card-actions>
+                <v-spacer></v-spacer>
+                <v-btn color="primary" @click="onLogin">Login</v-btn>
+              </v-card-actions>
+            </v-form>
+          </v-card-text>
+        </v-card>
       </v-col>
     </v-row>
   </v-container>

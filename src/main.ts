@@ -31,6 +31,12 @@ Vue.use(Notifications);
       router.push({name: 'home'})
       return;
     }
+
+    if (loggedIn && !authRequired) {
+      next(false);
+      router.push({name: 'projects'})
+      return;
+    }
     next();
   });
 
