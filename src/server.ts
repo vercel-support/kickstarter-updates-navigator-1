@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/camelcase */
+/* eslint-disable @typescript-eslint/ban-ts-ignore */
 import mockedProjects from '@/mocks/projects.json';
 import {Model, Server, Response} from 'miragejs'
 
