@@ -1,7 +1,7 @@
-import {NowRequest, NowResponse} from "@vercel/node";
+
 import axios from "axios";
 
-export default async (request: NowRequest, response: NowResponse) => {
+export default async (request, response) => {
     let { email, password } = request.body
 
     const res = await axios.post(
