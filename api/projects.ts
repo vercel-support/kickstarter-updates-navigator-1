@@ -2,7 +2,7 @@ import {NowRequest, NowResponse} from "@vercel/node";
 import axios from "axios";
 
 export default async (request: NowRequest, response: NowResponse) => {
-    async function projectsFetcher(projectsUrl) {
+    async function projectsFetcher(projectsUrl: string) {
         let res = await axios.get(
             `${projectsUrl}&oauth_token=${token}`
         )
@@ -18,7 +18,7 @@ export default async (request: NowRequest, response: NowResponse) => {
         projects.push(...res.data.projects);
     }
 
-    const projects = [];
+    const projects:any[] = [];
     let { token, starred_projects, backed_projects } = request.body
 
     await projectsFetcher(starred_projects);

@@ -1,9 +1,9 @@
-FROM node:11-alpine as base
+FROM node:lts-alpine as base
 
 WORKDIR /node/app
 
 RUN npm i -g vercel
-RUN npm install -g @vue/cli
+RUN npm i -g @vue/cli
 
 COPY package.json /node/app/package.json
 COPY package-lock.json /node/app/package-lock.json
