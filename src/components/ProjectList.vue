@@ -39,6 +39,7 @@
                 v-for="(project, i) in projects"
                 :key="i"
                 :href="`${project.urls.web.project}/posts`"
+                target="_blank"
             >
               <v-list-item-avatar>
                 <v-img :src="project.photo.small"></v-img>
@@ -74,7 +75,8 @@ export default Vue.extend({
       sorter: { label: 'Last Updated', expr: (a: any, b: any) => b.updated_at - a.updated_at },
       sorterItems: [
         { label: 'Last Updated', expr: (a: any,b: any) => b.updated_at - a.updated_at },
-        { label: 'Last Finished', expr: (a: any, b: any) => b.deadline - a.deadline },
+        { label: 'Last Created', expr: (a: any, b: any) => b.created_at - a.created_at },
+        { label: 'Last Deadline', expr: (a: any, b: any) => b.deadline - a.deadline },
       ],
     }
   },
