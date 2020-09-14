@@ -10,3 +10,8 @@
 - rework responsiveness (it doesn't look as I expected on the phone)
 - websockets (https://vercel.com/guides/deploying-pusher-channels-with-vercel)
 - pwa (https://blog.bitsrc.io/turn-your-vue-web-app-into-a-pwa-ca04d8bcdd64)
+
+####If I want ppl to use 
+- google analytics
+- user feedback (medallia, survey monkey)
+- monitoring

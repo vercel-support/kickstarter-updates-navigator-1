@@ -9,3 +9,5 @@ The Kickstarted API isn't public, I've started to face issues with CORS, not rea
 
 Well, it might be a mini playground to try some stuff. 
 The latest has been **Vercel** (also heard about Netlify), and using serverless. Since I can't spend a lot of time on this anyway, I'll try it out and make the Kickstarter API access all using Vercel serverless building with Node. 
+
+https://kickstarter-updates-navigator.vercel.app/
