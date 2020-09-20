@@ -1,7 +1,8 @@
 import { ResourceState } from "@/store/types/ResourceState";
 
 export const state: ResourceState = {
+    lastUpdated: undefined,
     isLoading: false,
-    total: -1,
+    total: undefined,
     collection: undefined,
 };

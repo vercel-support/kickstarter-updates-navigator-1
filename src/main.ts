@@ -9,9 +9,9 @@ import { makeServer } from "./server"
 
 Vue.config.productionTip = false
 
-if (process.env.NODE_ENV === "development") {
-  makeServer()
-}
+// if (process.env.NODE_ENV === "development") {
+//   makeServer()
+// }
 
 Vue.use(VueMoment);
 Vue.use(Notifications);

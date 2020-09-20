@@ -26,6 +26,7 @@ export const mutations: MutationTree<ResourceState> = {
         state.isLoading = isLoading;
     },
     [UPDATE_COLLECTION_ALL](state, payload: { total: number; projects: any[] }) {
+        state.lastUpdated = new Date();
         state.total = payload.total;
         state.collection = payload.projects.map(model => new ResourceModel(model.id, model));
     },
