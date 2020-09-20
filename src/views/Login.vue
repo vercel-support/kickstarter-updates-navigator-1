@@ -14,22 +14,27 @@
           <v-card-text>
             <v-form>
               <v-text-field
+                  ref="email"
                   v-model="email"
                   :loading="isLoading"
                   label="Login"
                   prepend-icon="mdi-account"
                   type="text"
+                  @keyup.enter="$refs.password.focus"
               />
               <v-text-field
+                  ref="password"
                   v-model="password"
                   :loading="isLoading"
                   label="Password"
                   prepend-icon="mdi-lock"
                   type="password"
+                  @keyup.enter="onLogin"
               />
               <v-card-actions>
                 <v-spacer></v-spacer>
                 <v-btn
+                    ref="submit"
                     color="primary"
                     :loading="isLoading"
                     @click="onLogin">
