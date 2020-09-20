@@ -5,6 +5,7 @@ import {actions} from "@/store/account/actions";
 import {Module} from "vuex";
 
 export interface AccountState {
+    isLoading: boolean;
     token: null | string;
     name: null | string;
     starred_projects: null | string;
@@ -13,6 +14,7 @@ export interface AccountState {
 export const account: Module<AccountState, any> = {
     namespaced: true as true,
     state: {
+        isLoading: false,
         token: null,
         name: null,
         starred_projects: null,

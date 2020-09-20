@@ -5,7 +5,7 @@
         <v-row align="center" justify="space-between">
           <v-col>
             <h3>Projects</h3>
-            <div class="text-caption">Last updated: {{ lastUpdated | moment('ddd, Do MMM - h:mmA')}}</div>
+            <div class="text-caption" v-show="lastUpdated">Last updated: {{ lastUpdated | moment('ddd, Do MMM - h:mmA')}}</div>
           </v-col>
           <v-spacer />
           <v-col cols="3">

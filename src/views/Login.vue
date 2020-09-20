@@ -15,19 +15,26 @@
             <v-form>
               <v-text-field
                   v-model="email"
+                  :loading="isLoading"
                   label="Login"
                   prepend-icon="mdi-account"
                   type="text"
               />
               <v-text-field
                   v-model="password"
+                  :loading="isLoading"
                   label="Password"
                   prepend-icon="mdi-lock"
                   type="password"
               />
               <v-card-actions>
                 <v-spacer></v-spacer>
-                <v-btn color="primary" @click="onLogin">Login</v-btn>
+                <v-btn
+                    color="primary"
+                    :loading="isLoading"
+                    @click="onLogin">
+                  Login
+                </v-btn>
               </v-card-actions>
             </v-form>
           </v-card-text>
@@ -39,7 +46,7 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import {mapActions} from "vuex";
+import {mapActions, mapGetters} from "vuex";
 
 export default Vue.extend({
   name: 'Login',
@@ -48,6 +55,11 @@ export default Vue.extend({
       email: "",
       password: "",
     }
+  },
+  computed: {
+    ...mapGetters('account', [
+      'isLoading',
+    ]),
   },
   methods: {
     ...mapActions('account', ['login']),
