@@ -25,15 +25,22 @@ export function makeServer({ environment = "development" } = {}) {
                 return schema.projects.all()
             });
 
+            this.get("/login", () => {
+                return new Response(401)
+            });
+
             this.post("/login", (schema, request) => {
                 const reqBody = JSON.parse(request.requestBody)
                 const body = JSON.stringify({
-                    token: reqBody.email+reqBody.password+"_token",
                     name: "Mock name",
                     starred_projects: null,
                     backed_projects: null,
                 })
                 return new Response(200, undefined, body)
+            });
+
+            this.get("/logout", () => {
+                return new Response(200)
             });
         },
     })

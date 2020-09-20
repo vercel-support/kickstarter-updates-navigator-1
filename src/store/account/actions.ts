@@ -13,6 +13,19 @@ export const actions: ActionTree<AccountState, any> = {
             resolve(isLoading);
         });
     },
+    loadUser({ commit }) {
+        return fetch(`${process.env.VUE_APP_BACKEND_ORIGIN}/api/login`,
+                {
+                    method: 'GET',
+                    cache: 'no-cache',
+                })
+            .then(res => {
+                if (res.status === 200) {
+                    return res.json();
+                }
+            })
+            .then(payload => commit(SET_ACCOUNT, payload))
+    },
     login({ dispatch, commit }, credentials: { email: string; password: string }) {
         return dispatch('setOnLoading', true)
             .then(() => fetch(`${process.env.VUE_APP_BACKEND_ORIGIN}/api/login`,
@@ -29,14 +42,14 @@ export const actions: ActionTree<AccountState, any> = {
             .finally(() => dispatch('setOnLoading', false));
     },
     logout({ commit }) {
-        return new Promise((resolve) => {
-            commit(SET_ACCOUNT, {
-                token: null,
-                name: null,
-                starred_projects: null,
-                backed_projects: null,
-            });
-            resolve(null);
-        });
+        return fetch(`${process.env.VUE_APP_BACKEND_ORIGIN}/api/logout`)
+            .finally(() =>
+                commit(SET_ACCOUNT, {
+                    token: null,
+                    name: null,
+                    starred_projects: null,
+                    backed_projects: null,
+                })
+            );
     },
 };

@@ -17,6 +17,13 @@ Vue.use(VueMoment);
 Vue.use(Notifications);
 
 (async function () {
+  try {
+    await store.dispatch('account/loadUser');
+  } catch (e) {
+    // not logged in. do nothing, the navigation guard below
+    // will take care of redirecting the user to the login
+  }
+
   /* eslint-disable no-new, no-unused-vars */
   router.beforeEach((to, from, next) => {
     const publicPages = [

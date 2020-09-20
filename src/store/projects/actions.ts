@@ -46,7 +46,7 @@ export const actions: ActionTree<ResourceState, any> = {
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({
-                        token: rootState.account.token,
+                        name: rootState.account.name,
                         starred_projects: rootState.account.starred_projects,
                         backed_projects: rootState.account.backed_projects
                     })
